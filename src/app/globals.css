@@ -7,12 +7,12 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
@@ -24,4 +24,44 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.container {
+  @apply max-w-7xl mx-auto p-5;
+}
+
+.title {
+  @apply text-center text-yellow-500 my-12 text-7xl font-bold;
+}
+
+.productGrid {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5;
+}
+
+.productCard {
+  @apply border border-gray-200 rounded-lg p-5 text-center transition-shadow duration-300 ease-in-out;
+}
+
+.productCard:hover {
+  @apply shadow-lg;
+}
+
+.productImage {
+  @apply w-full h-60 object-contain rounded-lg mb-4;
+}
+
+.productName {
+  @apply text-lg mb-2;
+}
+
+.productPrice {
+  @apply font-bold text-yellow-500 mb-4;
+}
+
+.addToCartButton {
+  @apply bg-yellow-500 text-white border-none py-2 px-5 text-center inline-block text-base cursor-pointer rounded transition-colors duration-300 ease-in-out;
+}
+
+.addToCartButton:hover {
+  @apply bg-yellow-600;
 }
