@@ -2,26 +2,22 @@
 import React from "react";
 import Image from "next/image";
 import { useGetProductsQuery } from "./api/apiSlice";
+import { Product } from "@/types/types";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/lib/features/cartSlice";
+// import { Bounce, toast, ToastContainer } from "react-toastify";
 
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
-
-const Products = () => {
+const Products = ({
+  productsRef,
+}: {
+  productsRef: React.RefObject<HTMLDivElement>;
+}) => {
   const { data: productList, isLoading, isError } = useGetProductsQuery({});
-  // if (isLoading) return <div>Loading...</div>;
-  // if (isError) return <div>Error fetching products</div>;
+  const dispatch = useDispatch();
+  // const toastEmmit = () => toast.success("Product Added");
+
   return (
-    <div className={"container"}>
+    <div className={"container"} id="products" ref={productsRef}>
       <h1 className={"title"}>Our Products</h1>
       <div className={"productGrid"}>
         {isLoading ? (
@@ -48,7 +44,12 @@ const Products = () => {
               />
               <h2 className={"productName"}>{product.title}</h2>
               <p className={"productPrice"}>${product.price.toFixed(2)}</p>
-              <button className={"addToCartButton"}>Add to Cart</button>
+              <button
+                className={"addToCartButton"}
+                onClick={() => dispatch(addToCart({ ...product, quantity: 1 }))}
+              >
+                Add to Cart
+              </button>
             </div>
           ))
         )}

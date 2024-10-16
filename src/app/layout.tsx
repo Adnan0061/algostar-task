@@ -1,4 +1,3 @@
-// 'use client'
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -6,6 +5,7 @@ import Header from "./header";
 import Footer from "./footer";
 import { ReduxWrapper } from "@/utils/reduxWrapper";
 import { ClientWrapper } from "@/utils/clientWrapper";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,6 +40,21 @@ export default function RootLayout({
             <Footer />
           </ReduxWrapper>
         </ClientWrapper>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Bounce}
+        />
+        {/* Same as */}
+        <ToastContainer />
       </body>
     </html>
   );
