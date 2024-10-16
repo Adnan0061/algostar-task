@@ -4,9 +4,11 @@ import Hero from "./hero";
 import Products from "./products";
 
 export default function Home() {
-  const productsRef = useRef(null);
+  const productsRef = useRef<HTMLDivElement>(null);
   const scrollToSection = () => {
-    productsRef.current.scrollIntoView({ behavior: "smooth" });
+    if (productsRef.current) {
+      productsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
   return (
     <main className="mx-auto">
